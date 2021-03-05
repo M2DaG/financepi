@@ -1,0 +1,45 @@
+## a simple program that takes user input and calculates a financial portfolio
+
+total = 0
+
+available_perc = 100
+
+print('There are 5 sectors you should focus on investing in.')
+print("Those sectors are: low risk, high risk, tech companies, healthcare companies, and Warren Buffet's approach.")
+inv_amt = int(input("What would you like the dollar amount of your portfolio to be? don't include any commas: "))
+
+low_risk = int(input("What percentage of your investment amount would you like to place in low risk investments? "))
+total += low_risk
+print("You have " + str(available_perc - total) + " percent available to allocate in your portfolio.")
+
+high_risk = int(input("What percentage of your investment amount would you like to place in high risk investments? "))
+total += high_risk
+print("You have " + str(available_perc - total) + " percent available to allocate in your portfolio.")
+
+tech = int(input("What percentage of your investment amount would you like to place in technology related investments? "))
+total += tech
+print("You have " + str(available_perc - total) + " percent available to allocate in your portfolio.")
+
+health = int(input("What percentage of your investment amount would you like to place in healthcare related investments? "))
+total += health
+print("You have " + str(available_perc - total) + " percent available to allocate in your portfolio.")
+
+buffet = int(input("What percentage of your investment amount would you like to place in what Warren Buffet is investing in? "))
+total += buffet
+print("You have " + str(available_perc - total) + " percent available to allocate in your portfolio.")
+
+if low_risk + high_risk + tech + health + buffet == 100:
+    print("ready to visualize!")
+    
+    
+investments = [low_risk, high_risk, tech, health, buffet]
+for i in investments:
+    print("$" + "%.2f" %((i/100)* inv_amt))
+
+import matplotlib.pyplot as plt
+labels = 'Low Risk', 'High Risk', 'Tech', 'Health', 'Warren Buffet Approach'
+sizes = [low_risk, high_risk, tech, health, buffet]
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
+ax1.axis('equal')
+plt.show()
